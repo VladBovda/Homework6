@@ -5,6 +5,9 @@ module.exports = (env, argv) => {
   const isProduction = argv.mode === "production";
 
   return {
+    cache: {
+      type: "filesystem",
+    },
     entry: "./src/index.js",
     output: {
       path: path.resolve(__dirname, "dist"),
@@ -29,13 +32,29 @@ module.exports = (env, argv) => {
           use: {
             loader: "babel-loader",
             options: {
+              cacheDirectory: true,
               presets: ["@babel/preset-env", "@babel/preset-react"],
             },
           },
         },
         {
           test: /\.css$/i,
-          use: ["style-loader", "css-loader", "postcss-loader"],
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: { sourceMap: true },
+            },
+            {
+              loader: 'postcss-loader',
+              options: { sourceMap: true },
+            },
+          ],
+        },
+        {
+          test: /\.svg$/i,
+          issuer: /\.[jt]sx?$/,
+          use: ['@svgr/webpack'],
         },
       ],
     },

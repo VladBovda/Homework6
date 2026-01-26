@@ -1,43 +1,27 @@
 import React from 'react';
-
-const WrapperComponent = ({ children }) => {
-    return (
-        <div>
-            <h1 className='font-bold text-center mt-10 text-3xl text-violet-600'>Hello, Webpack, React, and especially Tailwind!</h1>
-            <div className='Wrapper'>{children}</div>
-        </div>
-    );
-}
-
-const CounterComponent = (props) => {
-    const [count, setCount] = React.useState(props.defaultCount || 0);
-
-    const increment = () => {
-        setCount(count + 1);
-    };
-
-    const dicrement = () => {
-        setCount(count - 1);
-    };
-
-    return (
-        <div className='flex flex-col items-center gap-5 mt-10'>
-            <h2 className='text-2xl font-bold text-yellow-600'>Counter</h2>
-            <p className='text-xl font-bold text-green-600'>Current count: {count}</p>
-            <div className='flex gap-5'>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={increment}>Increment</button>
-                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={dicrement}>Decrement</button>
-            </div>
-        </div>
-    );
-}
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NavigationComponent from './components/NavigationComponent.jsx';
+import HomePage from './layouts/HomePage.jsx';
+import HeroesPage from './layouts/HeroesPage.jsx';
+import AboutPage from './layouts/AboutPage.jsx';
+import PageError from './components/PageError.jsx';
+import HeroesDrawer from './components/HeroesDrawer.jsx';
 
 
 const App = () => (
-    console.log("Webpack and React are set up!"),
-    <WrapperComponent>
-        <CounterComponent defaultCount={5} />
-    </WrapperComponent>
+    <div id='Wrapper' className='bg-yellow-500 min-h-screen'>
+        <Router>
+            <NavigationComponent />
+            <HeroesDrawer />
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/heroes" element={<HeroesPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path='*' element={<PageError />} />
+            </Routes>
+        </Router>
+    </div>
+
 );
 
 export default App;
