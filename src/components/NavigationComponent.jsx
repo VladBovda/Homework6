@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import {BottomNavigation, BottomNavigationAction} from '@mui/material'
-import {Home, Info} from '@mui/icons-material'
-import HeroesIcon from '../assets/HeroesIcon.svg';
-import Box from '@mui/material/Box';
-
+import { BottomNavigation, BottomNavigationAction, Box } from '@mui/material';
+import { Home, Info, Group } from '@mui/icons-material';
 
 const NavigationComponent = () => {
   const currentLocation = useLocation();
 
   const navItems = [
     { label: 'Home', path: '/', icon: <Home /> },
-    { label: 'Heroes', path: '/heroes', icon: <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 24, height: 24 }}><HeroesIcon style={{ width: 24, height: 24 }} /></Box> },
+    { label: 'Heroes', path: '/heroes', icon: <Group /> },
     { label: 'About', path: '/about', icon: <Info /> },
   ];
 

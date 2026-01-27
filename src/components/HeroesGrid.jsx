@@ -27,7 +27,7 @@ const HeroesGrid = () => {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            
+
             setCharacters(data.results || []);
             setRowCount(data.info?.count || 0);
         } catch (err) {
@@ -37,11 +37,6 @@ const HeroesGrid = () => {
             setIsLoading(false);
         }
     }, []);
-
-    const handleRowClick = (params) => {
-        setSelectedCharacter(params.row);
-        setDrawerOpen(true);
-    };
 
     useEffect(() => {
         loadPage(paginationModel.page + 1);
@@ -65,17 +60,20 @@ const HeroesGrid = () => {
         },
     ];
 
+    const handleRowClick = (params) => {
+        setSelectedCharacter(params.row);
+        setDrawerOpen(true);
+    };
+
     return (
-        <Box sx={{ 
-            p: 3, 
-            pl: 10, 
+        <Box sx={{
+            p: 6,
+            pl: 10,
             width: '100%',
             boxSizing: 'border-box',
         }}>
-            <Box sx={{ 
-                height: '700px',
-                width: '100%',
-                maxWidth: '100%',
+            <Box sx={{
+                height: '600px',
             }}>
                 <DataGrid
                     rows={characters}
@@ -87,22 +85,14 @@ const HeroesGrid = () => {
                     onPaginationModelChange={setPaginationModel}
                     onRowClick={handleRowClick}
                     getRowId={(row) => row.id}
-                    sx={{
-                        width: '100%',
-                        height: '100%',
-                        '& .MuiDataGrid-root': {
-                            width: '100%',
-                        }
-                    }}
                 />
             </Box>
 
-            <HeroesDrawer 
-                open={drawerOpen} 
-                onClose={() => setDrawerOpen(false)} 
+            <HeroesDrawer
+                open={drawerOpen}
+                onClose={() => setDrawerOpen(false)}
                 character={selectedCharacter}
             />
-
             {error && (
                 <Typography color="error" sx={{ mt: 2 }}>
                     {error}
@@ -111,5 +101,7 @@ const HeroesGrid = () => {
         </Box>
     );
 };
+
+
 
 export default HeroesGrid;

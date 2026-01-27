@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Snackbar, Alert } from '@mui/material';
 
 const PageError = () => {
@@ -17,7 +17,7 @@ const PageError = () => {
     const handleClose = () => {
         setState({ ...state, open: false });
     }
-    
+
     return (
         <Snackbar
             anchorOrigin={{ vertical, horizontal }}
@@ -25,7 +25,7 @@ const PageError = () => {
             onClose={handleClose}
             message="Error, invalid page!"
             key={"errorMessage"}
-            >
+        >
             <Alert severity="error">Error, invalid page!</Alert>
         </Snackbar>
     )

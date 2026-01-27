@@ -1,12 +1,17 @@
 import React from 'react';
+import { Box, Typography } from '@mui/material';
 
 const AboutPage = () => {
-    return (
-        <div className="flex flex-col items-center justify-center p-6 space-y-4">
-            <h1 className='text-3xl font-bold'>About Us</h1>
-            <p className='text-2xl'>Created by me</p>
-        </div>
-    );
-}
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', p: 6, gap: 2 }}>
+      <Typography variant="h3" component="h1" fontWeight="bold">
+        About Us
+      </Typography>
+      <Typography variant="h5" component="p">
+        Created by me
+      </Typography>
+    </Box>
+  );
+};
 
 export default AboutPage;

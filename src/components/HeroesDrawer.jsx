@@ -4,8 +4,6 @@ import { Drawer, Box, Typography, Avatar, Divider, Chip } from "@mui/material";
 const HeroesDrawer = ({ open, onClose, character }) => {
     if (!character) return null;
 
-    const description = `${character.species}${character.type ? ` - ${character.type}` : ''} from ${character.origin?.name || 'Unknown'}. Currently ${character.status?.toLowerCase() || 'unknown'} and last seen at ${character.location?.name || 'Unknown'}.`;
-
     return (
         <Drawer 
             anchor="right" 
@@ -16,7 +14,6 @@ const HeroesDrawer = ({ open, onClose, character }) => {
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
                     <Avatar
                         src={character.image}
-                        alt={character.name}
                         sx={{ width: 200, height: 200, mb: 2 }}
                     />
                     <Typography variant="h4" component="h2" gutterBottom align="center">
@@ -44,13 +41,6 @@ const HeroesDrawer = ({ open, onClose, character }) => {
                 </Box>
 
                 <Divider sx={{ my: 2 }} />
-
-                <Typography variant="h6" gutterBottom>
-                    Description
-                </Typography>
-                <Typography variant="body1" color="text.secondary" paragraph>
-                    {description}
-                </Typography>
 
                 {character.origin && (
                     <>
