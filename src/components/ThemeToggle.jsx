@@ -16,6 +16,37 @@ const ThemeToggle = ({ children }) => {
                 : "hsl(0, 0%, 100%)",
           },
         },
+
+        components: {
+          MuiCssBaseline: {
+            styleOverrides: {
+              body: {
+                scrollbarColor:
+                  mode === "dark"
+                    ? "#888 #1a1a1a"
+                    : "#888 #f5f5f5",
+              },
+
+              "::-webkit-scrollbar": {
+                width: "8px",
+              },
+
+              "::-webkit-scrollbar-track": {
+                backgroundColor:
+                  mode === "dark" ? "#1a1a1a" : "#f5f5f5",
+              },
+
+              "::-webkit-scrollbar-thumb": {
+                backgroundColor: "#888",
+                borderRadius: "8px",
+              },
+
+              "::-webkit-scrollbar-thumb:hover": {
+                backgroundColor: "#555",
+              },
+            },
+          },
+        },
       }),
     [mode]
   );
