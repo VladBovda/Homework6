@@ -2,7 +2,14 @@ import React, { useState, useMemo } from "react";
 import { ThemeProvider, createTheme, CssBaseline, Switch, Box, Typography } from "@mui/material";
 
 const ThemeToggle = ({ children }) => {
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      const stored = window.localStorage.getItem("themeMode");
+      return stored === "dark" || stored === "light" ? stored : "light";
+    }
+
+    return "light";
+  });
 
   const theme = useMemo(
     () =>
@@ -70,7 +77,13 @@ const ThemeToggle = ({ children }) => {
         <Switch
           checked={mode === "dark"}
           onChange={() =>
-            setMode((prev) => (prev === "light" ? "dark" : "light"))
+            setMode((prev) => {
+              const next = prev === "light" ? "dark" : "light";
+              if (typeof window !== "undefined") {
+                window.localStorage.setItem("themeMode", next);
+              }
+              return next;
+            })
           }
         />
         <Typography variant="body2" color="text.secondary">

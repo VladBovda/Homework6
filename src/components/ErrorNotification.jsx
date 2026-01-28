@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Snackbar, Alert } from '@mui/material';
 
-const PageError = () => {
+const ErrorNotification = () => {
     const [state, setState] = useState({
         open: false,
         vertical: 'top',
@@ -31,4 +31,4 @@ const PageError = () => {
     )
 }
 
-export default PageError;
+export default ErrorNotification;

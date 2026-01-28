@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //Components
 import NavigationComponent from './components/NavigationComponent.jsx';
-import PageError from './components/PageError.jsx';
+import ErrorNotification from './components/ErrorNotification.jsx';
 import HeroesDrawer from './components/HeroesDrawer.jsx';
 import ThemeToggle from './components/ThemeToggle.jsx';
 
@@ -21,7 +21,7 @@ const App = () => (
         <Route path="/" element={<HomePage />} />
         <Route path="/heroes" element={<HeroesPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="*" element={<PageError />} />
+        <Route path="*" element={<ErrorNotification />} />
       </Routes>
     </ThemeToggle>
   </Router>
